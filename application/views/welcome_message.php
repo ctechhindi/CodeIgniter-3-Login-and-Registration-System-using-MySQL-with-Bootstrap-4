@@ -1,0 +1,1 @@
+<h1>Welcome to CodeIgniter 3</h1>
