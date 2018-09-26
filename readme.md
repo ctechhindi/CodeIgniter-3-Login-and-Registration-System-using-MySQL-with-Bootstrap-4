@@ -8,3 +8,5 @@
 * Create login and registration view page and load in user controller
 * Include Bootstrap 4 Library : https://getbootstrap.com/
 * Adding Header and Footer
+* Design Login and Registration Page in Bootstrap 4
+* Apply CodeIgniter 3 Form Validation in Registration Page
