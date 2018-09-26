@@ -29,9 +29,28 @@ class User extends CI_Controller {
         }
         else
         {   
-            echo "<pre>";
-            print_r($_POST);
-            echo "</pre>";
+            $insert_data = array(
+                'fullname' => $this->input->post('full_name', TRUE),
+                'username' => $this->input->post('username', TRUE),
+                'email' => $this->input->post('email', TRUE),
+                'mobile' => $this->input->post('mobile', TRUE),
+                'password' => $this->input->post('password', TRUE),
+                'is_active' => 1,
+                'created_at' => time(),
+                'update_at' => time(),
+            );
+
+            /**
+             * Load User Model
+             */
+            $this->load->model('User_model', 'UserModel');
+            $result = $this->UserModel->insert_user($insert_data);
+
+            if ($result == TRUE) {
+                echo "You have registered successfully.";
+            } else {
+                echo "Invalid Registration.";
+            }
         }
     }
 

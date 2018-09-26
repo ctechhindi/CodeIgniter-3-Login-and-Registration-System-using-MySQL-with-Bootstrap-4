@@ -10,3 +10,5 @@
 * Adding Header and Footer
 * Design Login and Registration Page in Bootstrap 4
 * Apply CodeIgniter 3 Form Validation in Registration Page
+* Connect User Registration Page for MySql
+* Insert User Data in MySql
