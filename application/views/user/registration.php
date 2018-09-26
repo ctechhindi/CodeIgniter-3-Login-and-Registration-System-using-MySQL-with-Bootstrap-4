@@ -1,10 +1,8 @@
 <div class="container">
 
-    <!-- Show Form Validation Errors -->
-    <?php // echo validation_errors(); ?>
-
+    <!-- Include Flash Data File -->
+    <?php $this->load->view('_FlashAlert\flash_alert.php') ?>
     
-
     <?= form_open() ?>
         <div class="form-group">
             <label>Full Name</label>

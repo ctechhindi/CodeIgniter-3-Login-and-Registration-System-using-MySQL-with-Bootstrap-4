@@ -47,9 +47,15 @@ class User extends CI_Controller {
             $result = $this->UserModel->insert_user($insert_data);
 
             if ($result == TRUE) {
-                echo "You have registered successfully.";
+
+                $this->session->set_flashdata('success_flashData', 'You have registered successfully.');
+                redirect('User/registration');
+
             } else {
-                echo "Invalid Registration.";
+
+                $this->session->set_flashdata('error_flashData', 'Invalid Registration.');
+                redirect('User/registration');
+
             }
         }
     }
