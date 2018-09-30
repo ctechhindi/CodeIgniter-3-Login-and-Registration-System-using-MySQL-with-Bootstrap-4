@@ -1,5 +1,9 @@
 # CodeIgniter Login and Registration Application
 
+[Video Playlist](https://www.youtube.com/playlist?list=PLmrTMUhqzS3jK7dsgLxoxywsbV9NjXj8N)
+
+[Source Code](https://goo.gl/7udsza)
+
 # Topies
 
 * Install codeigniter 3 in Xampp Server
