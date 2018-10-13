@@ -34,14 +34,17 @@ class User_model extends CI_Model {
                 /**
                  * Password and Email Address Valid
                  */
-                return true;
+                return [
+                    'status' => TRUE,
+                    'data' => $query->row(),
+                ];
 
             } else {
-                return false;
+                return ['status' => FALSE,'data' => FALSE];
             }
 
         } else {
-            return false;
+            return ['status' => FALSE,'data' => FALSE];
         }
     }
 }

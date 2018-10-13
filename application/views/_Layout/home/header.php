@@ -21,8 +21,15 @@
             </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
-                <a href="<?= base_url('User/registration') ?>" class="btn btn-info my-2 my-sm-0">Register</a> &nbsp;
-                <a href="<?= base_url('User/login') ?>" class="btn btn-success my-2 my-sm-0">Login</a>
+                <?php if (!empty($this->session->userdata('USER_ID')) && $this->session->userdata('USER_ID') > 0) { ?>
+                    <!-- User isLogin -->
+                    <a href="<?= base_url('User/Panel') ?>" class="btn btn-primary my-2 my-sm-0">User Panel</a> &nbsp;
+                    <a href="<?= base_url('User/logout') ?>" class="btn btn-danger my-2 my-sm-0">Logout</a>
+                <?php } else { ?>
+                    <!-- User not Login -->
+                    <a href="<?= base_url('User/registration') ?>" class="btn btn-info my-2 my-sm-0">Register</a> &nbsp;
+                    <a href="<?= base_url('User/login') ?>" class="btn btn-success my-2 my-sm-0">Login</a>
+                <?php } ?>
             </div>
         </div>
     </nav>

@@ -94,7 +94,21 @@ class User extends CI_Controller {
             $this->load->model('User_model', 'UserModel');
             $result = $this->UserModel->check_login($login_data);
 
-            if ($result == TRUE) {
+            if (!empty($result['status']) && $result['status'] === TRUE) {
+
+                /**
+                 * Create Session
+                 * -----------------
+                 * First Load Session Library
+                 */
+                $session_array = array(
+                    'USER_ID'  => $result['data']->id,
+                    'USERNAME'  => $result['data']->username,
+                    'USER_EMAIL' => $result['data']->email,
+                    'IS_ACTIVE'  => $result['data']->is_active,
+                );
+                
+                $this->session->set_userdata($session_array);
 
                 $this->session->set_flashdata('success_flashData', 'Login Success');
                 redirect('User/login');
@@ -105,5 +119,19 @@ class User extends CI_Controller {
                 redirect('User/login');
             }
         }
-	}
+    }
+    
+    /**
+     * User Logout
+     */
+    public function logout() {
+
+        /**
+         * Remove Session Data
+         */
+        $remove_sessions = array('USER_ID', 'USERNAME','USER_EMAIL','IS_ACTIVE');
+        $this->session->unset_userdata($remove_sessions);
+
+        redirect('User/login');
+    }
 }
