@@ -71,9 +71,39 @@ class User extends CI_Controller {
      */
 	public function login()
 	{
-        $data['page_title'] = "User Login";
-		$this->load->view('_Layout/home/header.php', $data); // Header File
-        $this->load->view("user/login");
-		$this->load->view('_Layout/home/footer.php'); // Footer File
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['page_title'] = "User Login";
+            $this->load->view('_Layout/home/header.php', $data); // Header File
+            $this->load->view("user/login");
+            $this->load->view('_Layout/home/footer.php'); // Footer File
+        }
+        else
+        {
+            $login_data = array(
+                'email' => $this->input->post('email', TRUE),
+                'password' => $this->input->post('password', TRUE),
+            );
+
+            /**
+             * Load User Model
+             */
+            $this->load->model('User_model', 'UserModel');
+            $result = $this->UserModel->check_login($login_data);
+
+            if ($result == TRUE) {
+
+                $this->session->set_flashdata('success_flashData', 'Login Success');
+                redirect('User/login');
+
+            } else {
+
+                $this->session->set_flashdata('error_flashData', 'Invalid Email/Password.');
+                redirect('User/login');
+            }
+        }
 	}
 }
