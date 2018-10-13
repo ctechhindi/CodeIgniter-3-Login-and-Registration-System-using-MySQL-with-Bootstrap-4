@@ -40,7 +40,7 @@ class User extends CI_Controller {
                 'username' => $this->input->post('username', TRUE),
                 'email' => $this->input->post('email', TRUE),
                 'mobile' => $this->input->post('mobile', TRUE),
-                'password' => $this->input->post('password', TRUE),
+                'password' => password_hash($this->input->post('password', TRUE), PASSWORD_DEFAULT),
                 'is_active' => 1,
                 'created_at' => time(),
                 'update_at' => time(),
