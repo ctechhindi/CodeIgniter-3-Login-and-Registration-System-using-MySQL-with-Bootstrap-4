@@ -34,10 +34,7 @@
             <input type="password" name="passconf" value="<?= set_value('passconf'); ?>" class="form-control <?= (form_error('passconf') == "" ? '':'is-invalid') ?>" placeholder="Password Confirmation">
             <?= form_error('passconf'); ?> 
         </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input">
-            <label class="form-check-label">Check me out</label>
-        </div>
         <button type="submit" class="btn btn-primary">Register</button>
     <?= form_close() ?>
 </div>
+<br>

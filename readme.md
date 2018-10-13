@@ -17,3 +17,4 @@
 * Connect User Registration Page for MySql
 * Insert User Data in MySql
 * Show Success, Warning and Danger Alert Message using CodeIgniter Flashdata Session
+* Extending CodeIgniter Validation Library To Check For Unique Values (Email and Username)

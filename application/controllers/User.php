@@ -14,8 +14,14 @@ class User extends CI_Controller {
     public function registration()
     {
         $this->form_validation->set_rules('full_name', 'Full Name', 'required');
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
+        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]', [
+            'is_unique' => 'The %s already exists. Please use a different username',
+        ]); // Unique Field
+
+        $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email|is_unique[users.email]', [
+            'is_unique' => 'The %s already exists. Please use a different email',
+        ]); // // Unique Field
+
         $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]|max_length[10]|numeric');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
