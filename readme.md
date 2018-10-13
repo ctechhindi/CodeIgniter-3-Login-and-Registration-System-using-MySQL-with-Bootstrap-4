@@ -21,3 +21,4 @@
 * Apply Password Hashing in Password Field
 * Activate the Login page with Database and Password Hashing
 * Create and Destroy Sessions - Log In and Log Out
+* Create User Panel with User Session

@@ -103,6 +103,7 @@ class User extends CI_Controller {
                  */
                 $session_array = array(
                     'USER_ID'  => $result['data']->id,
+                    'USER_NAME'  => $result['data']->fullname,
                     'USERNAME'  => $result['data']->username,
                     'USER_EMAIL' => $result['data']->email,
                     'IS_ACTIVE'  => $result['data']->is_active,
@@ -111,7 +112,7 @@ class User extends CI_Controller {
                 $this->session->set_userdata($session_array);
 
                 $this->session->set_flashdata('success_flashData', 'Login Success');
-                redirect('User/login');
+                redirect('User/Panel');
 
             } else {
 
@@ -129,9 +130,24 @@ class User extends CI_Controller {
         /**
          * Remove Session Data
          */
-        $remove_sessions = array('USER_ID', 'USERNAME','USER_EMAIL','IS_ACTIVE');
+        $remove_sessions = array('USER_ID', 'USERNAME','USER_EMAIL','IS_ACTIVE', 'USER_NAME');
         $this->session->unset_userdata($remove_sessions);
 
         redirect('User/login');
+    }
+
+    /**
+     * User Panel
+     */
+    public function panel() {
+
+        if (empty($this->session->userdata('USER_ID'))) {
+            redirect('user/login');
+        }
+
+        $data['page_title'] = "Welcome to User Panel";
+        $this->load->view('_Layout/home/header.php', $data); // Header File
+        $this->load->view("user/panel");
+        $this->load->view('_Layout/home/footer.php'); // Footer File
     }
 }
